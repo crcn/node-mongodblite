@@ -6,10 +6,11 @@ module.exports = structr({
 	/**
 	 */
 
-	__construct: function(collection, selector, ModelClass) {
+	__construct: function(collection, selector, options, ModelClass) {
 		this.selector = selector;
 		this.collection = collection;
 		this._ModelClass = ModelClass;
+		this.options = options || {};
 	},
 
 	/**

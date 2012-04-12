@@ -11,9 +11,8 @@
  	 */
 
  	"override __construct": function(db, name) {
- 		this._super();
-
  		var self = this;
+ 		this._super();
 
  		//wait for the DB to be ready before starting
  		this.next(function() {
@@ -36,7 +35,7 @@
  	"find": function(selector, options, next) {
 
  		if(!next) {
- 			
+
  		}
  	}
 

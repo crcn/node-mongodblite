@@ -60,7 +60,8 @@ module.exports = structr(EventEmitter, {
 	"_wrap": function() {
 		var args = arguments, self = this;
 		return function() {
-			for(var i 0, n = args.length; i < n; i++) {
+			var i = 0;
+			for(; n = args.length; i < n; i++) {
 				args[i].apply(self, arguments);
 			}
 		}

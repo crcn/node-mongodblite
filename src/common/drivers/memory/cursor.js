@@ -8,7 +8,6 @@ var Cursor = require("../../abstract/cursor").extend({
 
 	"override __construct": function() {
 		this._super.apply(this);
-		this._options  = {};
 		this._position = 0; 
 		this._sift = sift(this.selector);
 
@@ -28,7 +27,7 @@ var Cursor = require("../../abstract/cursor").extend({
 			sort = key;
 		}
 
-		this._options.sort = sort;
+		this.options.sort = sort;
 
 		return this;
 	},
@@ -37,7 +36,7 @@ var Cursor = require("../../abstract/cursor").extend({
 	 */
 
 	limit: function(count) {
-		this._options.limit = count;
+		this.options.limit = count;
 		return this;
 	},
 
@@ -45,7 +44,7 @@ var Cursor = require("../../abstract/cursor").extend({
 	 */
 
 	skip: function(count) {
-		this._options.skip = count;
+		this.options.skip = count;
 		this._position = count;
 		return this;
 	},
@@ -54,14 +53,13 @@ var Cursor = require("../../abstract/cursor").extend({
 	 */
 
 	rewind: function() {
-		this._position = this._options.skip || 0;
+		this._position = this.options.skip || 0;
 	},
 
 	/**
 	 */
 
 	_nextObject: function(fn) {
-
 		var self = this;
 
 		self._all(function(err, sifted) {
@@ -74,12 +72,14 @@ var Cursor = require("../../abstract/cursor").extend({
 
 	_all: function(fn) {
 
+		var sifted;
+
 		//TODO - async chunk
 		if(this._sifted) return fn(null, this._sifted);
-		var sifted = this._sifted = this._sort(this._sift(this.collection.target));
+		sifted = this._sifted = this._sort(this._sift(this.collection.target));
 
-		if(this._options.limit && sifted.length > this._options.limit) {
-			sifted = sifted.splice(0, this._options.limit);
+		if(this.options.limit && sifted.length > this._options.limit) {
+			sifted = sifted.splice(0, this.options.limit);
 		}
 
 		fn(null, sifted);

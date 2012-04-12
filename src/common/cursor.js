@@ -6,7 +6,7 @@ module.exports = require("./abstract/cursor").extend({
 	/**
 	 */
 
-	"override __construct": function(collection, selector, options) {
+	"override __construct": function(collection, selector, options, ModelClass) {
 		this._super(collection, selector, options);
 
 		this._chain      = new Chainable();

@@ -1,4 +1,5 @@
 
+
 /**
  * wrapper for the drivers
  */
@@ -10,8 +11,9 @@
  	 * @param target the target collection we're wrapping around
  	 */
 
- 	"override __construct": function(db, name) {
+ 	"override __construct": function(db, name, ModelClass) {
  		var self = this;
+ 		this._modelClass = ModelClass;
  		this._super();
 
  		//wait for the DB to be ready before starting

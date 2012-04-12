@@ -7,16 +7,23 @@ tq           = require('tq');
  * makes an object chainable
  */
 
-module.exports = structr(EventEmitter, {
+module.exports = structr({
 
 
 	/**
 	 */
 
-	"override __construct": function() {
-		this._super();
+	"__construct": function() {
 		this._queue = tq.queue();
 		this._isReady = false;
+		this._em = new EventEmitter();
+	},
+
+	/**
+	 */
+
+	"on": function(type, callback) {
+		this._em.on(type, callback);
 	},
 
 	/**
@@ -35,8 +42,8 @@ module.exports = structr(EventEmitter, {
 		if(!arguments.length) return this._target;
 		if(!this._target) {
 			this._target = value;
-			this.emit("ready");
-			this.removeAllListeners("ready");
+			this._em.emit("ready");
+			this._em.removeAllListeners("ready");
 		}
 		return value;
 	},
@@ -48,7 +55,7 @@ module.exports = structr(EventEmitter, {
 	"ready": function(fn) {
 
 		//target already set? call the fn immediatly 
-		if(this._target) return fn();
+		if(this._target) return fn(this._target);
 
 		//otherwise wait until we're ready...
 		this.on("ready", fn);

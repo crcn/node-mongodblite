@@ -1,4 +1,5 @@
-var structr = require('structr');
+var structr = require('structr'),
+sift        = require('sift');
 
 
 module.exports = structr({
@@ -6,12 +7,56 @@ module.exports = structr({
 	/**
 	 */
 
-	__construct: function(collection, selector, options, ModelClass) {
-		this.selector = selector;
-		this.collection = collection;
-		this._ModelClass = ModelClass;
-		this.options = options || {};
+	__construct: function(collection, selector, options) {
+		this.selector    = selector;
+		this.collection  = collection;
+		this.options     = options || {};
+		this._sift       = sift(this.selector);
+		this._position   = 0;
 	},
+
+	/**
+	 */
+
+	sort: function(key, order) {
+		var sort = {};
+
+		if(arguments.length == 2) {
+			sort[key] = order;
+		} else {
+			sort = key;
+		}
+
+		this.options.sort = sort;
+
+		return this;
+	},
+
+	/**
+	 */
+
+	limit: function(count) {
+		this.options.limit = count;
+		return this;
+	},
+
+	/**
+	 */
+
+	skip: function(count) {
+		this.options.skip = count;
+		this._position = count;
+		return this;
+	},
+
+	/**
+	 */
+
+	rewind: function() {
+		this._position = this.options.skip || 0;
+		return this;
+	},
+
 
 	/**
 	 */
@@ -42,12 +87,12 @@ module.exports = structr({
 	/**
 	 */
 
-	nextObject: function(fn) {
+	/*nextObject: function(fn) {
 		var self = this;
 		this._nextObject(function(err, doc) {
 			if(!doc) return fn(err, doc);
 			fn(err, self._ModelClass ? new self._ModelClass(self.collection, doc) : doc);
 		})
-	}
+	}*/
 
 })

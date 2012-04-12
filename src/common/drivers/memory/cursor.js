@@ -78,6 +78,10 @@ var Cursor = require("../../abstract/cursor").extend({
 		if(this._sifted) return fn(null, this._sifted);
 		var sifted = this._sifted = this._sort(this._sift(this.collection.target));
 
+		if(this._options.limit && sifted.length > this._options.limit) {
+			sifted = sifted.splice(0, this._options.limit);
+		}
+
 		fn(null, sifted);
 	},
 

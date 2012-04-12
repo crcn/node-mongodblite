@@ -24,13 +24,13 @@ var Cursor = require("../../abstract/cursor").extend({
 
 		//TODO - async chunk
 		if(this._sifted) return fn(null, this._sifted);
-		sifted = this._sifted = this._sort(this._sift(this.collection.target));
+		sifted = this._sort(this._sift(this.collection.target));
 
 		if(this.options.limit && sifted.length > this._options.limit) {
 			sifted = sifted.splice(0, this.options.limit);
 		}
 
-		fn(null, sifted);
+		fn(null, this._sifted = sifted);
 	},
 
 

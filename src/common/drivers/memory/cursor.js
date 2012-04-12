@@ -15,6 +15,7 @@ var Cursor = require("../../abstract/cursor").extend({
 		});
 	},
 
+
 	/**
 	 */
 

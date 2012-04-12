@@ -79,7 +79,7 @@ module.exports = structr({
 	toArray: function(fn) {
 		var docs = [];
 		this.each(function(err, document) {
-			if(!document) return fn(err, document);
+			if(!document) return fn(err, docs);
 			docs.push(document);
 		});
 	},

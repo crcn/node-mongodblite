@@ -17,8 +17,7 @@
   },
   "dependencies": {
     "sift": "*",
-    "structr": "*",
-    "underscore": "1.2.x"
+    "structr": "*"
   },
   "devDependencies": {},
   "mesh": true

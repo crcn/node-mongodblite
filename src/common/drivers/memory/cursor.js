@@ -46,6 +46,7 @@ var Cursor = require("../../abstract/cursor").extend({
 
 	skip: function(count) {
 		this._options.skip = count;
+		this._position = count;
 		return this;
 	},
 
@@ -53,7 +54,7 @@ var Cursor = require("../../abstract/cursor").extend({
 	 */
 
 	rewind: function() {
-		this._position = 0;
+		this._position = this._options.skip || 0;
 	},
 
 	/**
@@ -64,7 +65,7 @@ var Cursor = require("../../abstract/cursor").extend({
 		var self = this;
 
 		self._all(function(err, sifted) {
-
+			fn(null, sifted[self._position++]);
 		});
 	},
 
@@ -72,14 +73,14 @@ var Cursor = require("../../abstract/cursor").extend({
 	 */
 
 	_all: function(fn) {
-		var sifted = this._sift(this.collection.target);
-		fn(null, this._sort(sifted));
+
+		//TODO - async chunk
+		if(this._sifted) return fn(null, this._sifted);
+		var sifted = this._sifted = this._sort(this._sift(this.collection.target));
+
+		fn(null, sifted);
 	},
 
-	/**
-	 */
-
-	'_init': function()
 
 
 	/**

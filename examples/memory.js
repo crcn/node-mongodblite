@@ -30,9 +30,9 @@ setTimeout(function() {
 
 var cursor = helloCollection.find({age:{$gt:21}});
 
-cursor.observe(function(items) {
-	items.on("change", function() {
-		console.log("G")
+cursor.observe(function(observer) {
+	observer.on("change", function() {
+		console.log("changed!")
 	})
 });
 

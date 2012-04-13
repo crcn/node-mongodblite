@@ -37,7 +37,7 @@ cursor.observe(function(observer) {
 });
 
 
-helloCollection.remove({age: {$lt:22}})
+helloCollection.remove({age: {$lt:22}});
 
 
 /*cursor.on("insert", function(item) {

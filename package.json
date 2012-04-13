@@ -14,7 +14,13 @@
   "dependencies": {
     "sift": "*",
     "structr": "*",
-    "underscore": "1.2.x"
+    "underscore": "1.2.x",
+    "tq": "0.0.x",
+    "step": "0.0.x",
+    "cashew": "0.0.x",
+    "fiddle": "0.0.x",
+    "outcome": "0.0.x",
+    "mongodb": "0.9.x.-7"
   },
   "devDependencies": {},
   "mesh": true

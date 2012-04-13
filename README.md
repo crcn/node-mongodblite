@@ -17,6 +17,7 @@ Inspired by [meteor](http://meteor.com)
 - rest gateway example
 - DNode driver
 - Http driver
+- object modifiers: $inc, $set, $unset, $push $pushAll, $addToSet, $pop, $pull, $pullAll, $rename, $bit (should be separate repo - fiddle?)
 
 
 ### Examples

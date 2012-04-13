@@ -1,1 +1,0 @@
-var structr = require('structr')

@@ -18,6 +18,7 @@ Inspired by [meteor](http://meteor.com)
 - DNode driver
 - Http driver
 - object modifiers: $inc, $set, $unset, $push $pushAll, $addToSet, $pop, $pull, $pullAll, $rename, $bit (should be separate repo - fiddle?)
+- cursor.emit("update") when limit, selector, or skip have changed
 
 
 ### Examples
@@ -52,15 +53,20 @@ people.insert([
 //create a filter against the "people" collection
 var peopleOlderThan21 = people.find({age:{$gt:21}}).limit(20);
 
-//listen for when new people over the age of 21 are inserted
-peopleOlderThan21.on('insert', function(e) {
-	console.log(e.item);//the new item
-	console.log(e.index);//the item index
-});
+peopleOlderThan21.observe(function(observer) {
+	
+	//the filtered items - max = 20
+	console.log(observer.source);
 
+	observer.on("insert", function(items) {
+		//craig - source is also updated
+	});
 
-peopleOlderThan21.each(function(err, item) {
-	//Craig	
+	//called when something big changes, such as limit, or skip
+	observer.on("reset", function() {
+
+	});
+
 });
 
 

@@ -30,7 +30,15 @@ setTimeout(function() {
 
 var cursor = helloCollection.find({age:{$gt:21}});
 
-cursor.on("insert", function(item) {
+cursor.observe(function(items) {
+	items.on("change", function() {
+		console.log("G")
+	})
+});
+
+
+
+/*cursor.on("insert", function(item) {
 	console.log("new item added!");
 	console.log(item)
 });
@@ -40,6 +48,8 @@ cursor.on("insert", function(item) {
 
 cursor.each(function(err, item) {
 	if(item) console.log(item);
-})
+})*/
+
+
 
 

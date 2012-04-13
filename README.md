@@ -12,6 +12,11 @@ Inspired by [meteor](http://meteor.com)
 ### TODO
 
 - fork mongoose ODM and use *this* as the default driver
+- REST interface mapper
+- sync items to backend (persistence api)
+- rest gateway example
+- DNode driver
+- Http driver
 
 
 ### Examples

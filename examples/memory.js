@@ -33,9 +33,11 @@ var cursor = helloCollection.find({age:{$gt:21}});
 cursor.observe(function(observer) {
 	observer.on("change", function() {
 		console.log("changed!")
-	})
+	});
 });
 
+
+helloCollection.remove({age: {$lt:22}})
 
 
 /*cursor.on("insert", function(item) {

@@ -20,7 +20,8 @@
     "cashew": "0.0.x",
     "fiddle": "0.0.x",
     "outcome": "0.0.x",
-    "mongodb": "0.9.x.-7"
+    "mongodb": "0.9.x.-7",
+    "asyngleton": "0.0.x"
   },
   "devDependencies": {},
   "mesh": true

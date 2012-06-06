@@ -1,6 +1,7 @@
 var mdblite = require("../lib"),
 db = mdblite.db(new mdblite.drivers.Memory());
 
+
 var helloCollection = db.collection("hello");
 
 
@@ -30,14 +31,13 @@ setTimeout(function() {
 
 var cursor = helloCollection.find({age:{$gt:21}});
 
-cursor.observe(function(observer) {
-	observer.on("change", function() {
-		console.log("changed!")
-	});
+cursor.observer().on("insert", function(item) {
+	console.log(item)
 });
 
 
-helloCollection.remove({age: {$lt:22}});
+// helloCollection.remove({age: {$lt:23}});
+helloCollection.update({age: {$lt:23}}, {$set:{hobby: "football"}});
 
 
 /*cursor.on("insert", function(item) {

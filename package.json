@@ -2,15 +2,12 @@
   "author": "Craig Condon",
   "name": "mongodblite",
   "description": "self-contained mongodb implementation",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/crcn/node-mongodblite.git"
   },
   "main": "./lib/index.js",
-  "engines": {
-    "node": "~0.6.14"
-  },
   "dependencies": {
     "sift": "*",
     "structr": "*",
@@ -20,8 +17,11 @@
     "cashew": "0.0.x",
     "fiddle": "0.0.x",
     "outcome": "0.0.x",
-    "mongodb": "0.9.x.-7",
-    "asyngleton": "0.0.x"
+    "asyngleton": "0.0.x",
+    "mkdirp": "0.3.x",
+    "traverse": "0.5.x",
+    "mongodb": "1.1.x",
+    "structr-step": "0.0.x"
   },
   "devDependencies": {},
   "mesh": true

@@ -32,6 +32,7 @@ setTimeout(function() {
 var cursor = helloCollection.find({age:{$gt:21}});
 
 cursor.observer().on("insert", function(item) {
+	console.log("changed:");
 	console.log(item)
 });
 
